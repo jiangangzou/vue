@@ -1,32 +1,50 @@
 <template>
-  <div id="app">
-    <!-- vue 内置组件 -->
-   <transition name="router-fade">
-     <keep-alive>
-        <router-view v-if="$route.meta.keepalive"></router-view>
-     </keep-alive>
-   </transition>
-   <transition name="router-fade">
-    <router-view v-if="!$route.meta.keepalive"></router-view>
-   </transition>
-  </div>
-</template>
-
-<script>
-export default {
-  name: 'App'
-}
-</script>
-
-<style lang="stylus">
- @import './style/common';
- /* 进入的那一瞬间 */
- /* .router-fade-enter-active 会在进入整个过程里 */
-.router-fade-leave-active,
- .router-fade-enter-active {
-  transition:  opacity .3s;
- }
- .router-fade-enter, .router-fade-leave {
-   opacity: 0;
- }
-</style>
+    <div id="wrapper">
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <a href="" class="navbar-brand">
+            <i class="glyphicon glyphicon-time"></i>
+            计划版
+          </a>
+          <ul class="nav navbar-nav">
+            <li>
+              <router-link to='/home'>首页</router-link>
+            </li>
+            <li>
+              <router-link to='/time-entries'>计划列表</router-link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container">
+        <div class="col-sm-3">
+          <Sidebar></Sidebar>
+        </div>
+        <div class="col-sm-9">
+            <router-view/>
+        </div>
+      </div>
+    </div>
+  </template>
+  
+  <script>
+    import Sidebar from '@/components/Sidebar'
+  export default {
+    name: 'App',
+    components: {
+      Sidebar
+    }
+  }
+  </script>
+  
+  <style>
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+  }
+  </style>
+  

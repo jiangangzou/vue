@@ -1,9 +1,7 @@
-import { ADD_CART } from './mutation-types'
+import * as types from './mutation-types'
+
 export default {
-    [ ADD_CART ](state,{
-        shopid,
-        food_id
-    }) {
-        
+    [types.ADD_TOTAL_TIME] (state,time) {
+        state.totalTime = state.totalTime + time
     }
 }

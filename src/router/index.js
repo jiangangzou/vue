@@ -1,42 +1,34 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import login from '@/pages/login'
-const home = () => import('@/pages/home')
-const city = () => import ('@/pages/city')
-const msite = () => import ('@/pages/msite')
-// import Home from '@/page/home'
-// lazyload
-
+import TimeEntries from '@/components/TimeEntries'
+import LogTime from '@/components/LogTime'
+import Notfound from '@/components/404'
+import Home from '@/components/Home'
 
 Vue.use(Router)
 
 export default new Router({
-
   routes: [
     {
       path: '/',
-      redirect: '/home'
-      
+      component: Home
     },{
       path: '/home',
-      component: home
+      component: Home
     },
     {
-      path: '/login',
-      component: login,
-      meta: {
-        keepalive: true
-      }
-      
-    },
-    {
-      path: '/city/:cityid',
-      component: city
-    },
-    {
-      path: '/msite',
-      component: msite
+      path: '/time-entries',
+      component: TimeEntries,
+      children: [
+        {
+          path: 'log-time',
+          component: LogTime
+        }
+      ]
+    },{
+      path: '*',
+      component: Notfound
     }
   ]
 })
